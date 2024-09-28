@@ -2,7 +2,7 @@ DISCLAIMER: I've built this for myself. Feel free to use only if you know what y
 
 ## What's this?
 
-This app allows you to transform BIP39 seed phrase into a
+This app allows you to transform a BIP39 seed phrase into a
 "scrambled" seed phrase, that is, a bunch of words containing
 random characters that doesn't look like a seed phrase. You only
 need to input a password, which will be used to encode each word.
