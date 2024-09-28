@@ -17,10 +17,10 @@ export const MainTable = ({ password }: { password: string }) => {
     <div className="overflow-auto">
       <div className="flex flex-col flex-1 font-mono">
         {WORDS.map((word, i) => (
-          <div className="flex flex-row">
-            <div className="basis-1/5 p-2">{i}</div>
-            <div className="basis-2/5 p-2">{word}</div>
-            <div className="basis-2/5 p-2">
+          <div className="flex flex-row" key={word}>
+            <div className="basis-1/5 p-2 text-center">{i}</div>
+            <div className="basis-2/5 p-2 text-center">{word}</div>
+            <div className="basis-2/5 p-2 text-center">
               {scrambleWithPassword(word, password)}
             </div>
           </div>

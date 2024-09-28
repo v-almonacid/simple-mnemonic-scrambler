@@ -16,7 +16,7 @@ const PasswordInput = ({
       >
         Pick Your Password
       </label>
-      <div className="mt-2 flex flex-row">
+      <div className="mt-2 flex flex-col sm:flex-row">
         <input
           id="password"
           name="password"
@@ -27,7 +27,7 @@ const PasswordInput = ({
         />
         <button
           type="button"
-          className="ml-2 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          className="ml-0 mt-2 lg:ml-2 lg:mt-0 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
           onClick={() => onSetPassword(password)}
         >
           Encode
@@ -42,13 +42,20 @@ function App() {
   return (
     <div className="relative bg-white">
       <div className="h-screen sm:pb-40 sm:pt-12 lg:pb-48 lg:pt-20">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-row flex-1">
-          <div className="flex flex-col flex-1 mx-20">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row flex-1 justify-center">
+          <div className="flex flex-col flex-1 mx-20 mt-10 sm:mt-0">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Simple Mnemonic Scrambler
             </h1>
             <p className="mt-4 text-xl text-gray-500">
-              This app lets you transform a BIP39 seed phrase into a 'scrambled'
+              This app lets you transform a BIP39 seed phrase into a{" "}
+              <a
+                className="underline decoration-solid"
+                href="https://en.wikipedia.org/wiki/Scrambler"
+                target="_blank"
+              >
+                scrambled{" "}
+              </a>
               version—a series of words mixed with random characters that don't
               resemble a typical seed phrase. Simply input a password, which
               will be used to encode each word. You can then write down your
@@ -62,11 +69,11 @@ function App() {
                 brute-forced. Use at your own responsibility.
               </b>
             </p>
-            <div className="mr-20 my-10">
+            <div className="lg:mr-20 my-10">
               <PasswordInput onSetPassword={setPassword} />
             </div>
           </div>
-          <div className="my-10 flex flex-1">
+          <div className="my-10 flex flex-1 justify-center items-center lg:justify-start">
             <div className="mt-10 md:mt-0 lg:mx-auto lg:w-full lg:max-w-7xl">
               <MainTable password={password} />
             </div>
