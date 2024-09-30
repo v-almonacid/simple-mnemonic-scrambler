@@ -1,5 +1,6 @@
 import { wordlists } from "bip39";
 import { scrambleWithPassword } from "scrambler";
+import { classNames } from "utils";
 
 const WORDS = wordlists.english;
 
@@ -17,10 +18,16 @@ export const MainTable = ({ password }: { password: string }) => {
     <div className="overflow-auto">
       <div className="flex flex-col flex-1 font-mono">
         {WORDS.map((word, i) => (
-          <div className="flex flex-row" key={word}>
-            <div className="basis-1/5 p-2 text-center">{i}</div>
-            <div className="basis-2/5 p-2 text-center">{word}</div>
-            <div className="basis-2/5 p-2 text-center">
+          <div
+            className={classNames(
+              "flex flex-row divide-y",
+              i % 2 === 0 && "font-bold"
+            )}
+            key={word}
+          >
+            <div className="basis-1/12 p-2">{i}</div>
+            <div className="basis-5/12 p-2">{word}</div>
+            <div className="basis-6/12 p-2">
               {scrambleWithPassword(word, password)}
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MainTable } from "./MainTable";
-import { scrambleWithPassword } from "scrambler";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 const PasswordInput = ({
   onSetPassword,
@@ -8,6 +8,24 @@ const PasswordInput = ({
   onSetPassword: (s: string) => void;
 }) => {
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    const isValidInput = /^[a-zA-Z]*$/.test(input);
+    if (isValidInput) {
+      setPassword(e.target.value.toLowerCase());
+      setError("");
+    } else {
+      setError(
+        "Your password can only contain letters. Don't use numbers or special characters"
+      );
+    }
+  };
+
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+
   return (
     <div>
       <label
@@ -17,14 +35,29 @@ const PasswordInput = ({
         Pick Your Password
       </label>
       <div className="mt-2 flex flex-col sm:flex-row">
-        <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="abracadabra"
-          className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="relative rounded-md shadow-sm w-full">
+          <input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="abracadabra"
+            className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            onChange={handleOnChange}
+          />
+          <div
+            className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+            onClick={toggleShowPassword}
+          >
+            {showPassword ? (
+              <EyeSlashIcon
+                aria-hidden="true"
+                className="h-5 w-5 text-gray-400"
+              />
+            ) : (
+              <EyeIcon aria-hidden="true" className="h-5 w-5 text-gray-400" />
+            )}
+          </div>
+        </div>
         <button
           type="button"
           className="ml-0 mt-2 lg:ml-2 lg:mt-0 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -33,6 +66,7 @@ const PasswordInput = ({
           Encode
         </button>
       </div>
+      {error && <div className="mt-2 text-red-500">{error}</div>}
     </div>
   );
 };
@@ -42,8 +76,8 @@ function App() {
   return (
     <div className="relative bg-white">
       <div className="h-screen sm:pb-40 sm:pt-12 lg:pb-48 lg:pt-20">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row flex-1 justify-center">
-          <div className="flex flex-col flex-1 mx-20 mt-10 sm:mt-0">
+        <div className="px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row flex-1 justify-center">
+          <div className="flex flex-col flex-1 mx-8 lg:mx-20 mt-10 sm:mt-0">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Simple Mnemonic Scrambler
             </h1>
@@ -74,7 +108,7 @@ function App() {
             </div>
           </div>
           <div className="my-10 flex flex-1 justify-center items-center lg:justify-start">
-            <div className="mt-10 md:mt-0 lg:mx-auto lg:w-full lg:max-w-7xl">
+            <div className="lg:mt-10 lg:w-full lg:max-w-7xl">
               <MainTable password={password} />
             </div>
           </div>
