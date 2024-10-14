@@ -105,6 +105,10 @@ function App() {
               practices for standard seed phrases, adding an extra layer of
               security. Just remember to back up your password safely elsewhere.
             </p>
+            <p className="mt-4 text-xl text-gray-500">
+              To restore your seed phrase back in plain text, just follow the
+              inverse process.
+            </p>
             <p className="mt-4 text-xl">
               <b>
                 Bear in mind that this encoding method can be easily
