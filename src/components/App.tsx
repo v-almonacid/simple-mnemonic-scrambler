@@ -24,6 +24,14 @@ const PasswordInput = ({
     }
   };
 
+  const handleEncode = () => {
+    if (!password) {
+      setError("Your password is empty!");
+      return;
+    }
+    onSetPassword(password);
+  };
+
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
@@ -34,8 +42,8 @@ const PasswordInput = ({
       >
         Pick Your Password
       </label>
-      <div className="mt-2 flex flex-col sm:flex-row">
-        <div className="relative rounded-md shadow-sm w-full">
+      <div className="mt-2 flex flex-row">
+        <div className="relative rounded-md w-full">
           <input
             id="password"
             name="password"
@@ -45,7 +53,7 @@ const PasswordInput = ({
             onChange={handleOnChange}
           />
           <div
-            className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+            className="absolute inset-y-0 flex items-center right-0 pr-3 cursor-pointer"
             onClick={toggleShowPassword}
           >
             {showPassword ? (
@@ -60,8 +68,8 @@ const PasswordInput = ({
         </div>
         <button
           type="button"
-          className="ml-0 mt-2 lg:ml-2 lg:mt-0 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          onClick={() => onSetPassword(password)}
+          className="ml-1 lg:ml-2 lg:mt-0 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          onClick={() => handleEncode()}
         >
           Encode
         </button>

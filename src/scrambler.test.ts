@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { scrambleWithPassword, shiftArray, ALPHABET } from "scrambler";
+import { shiftArray, ALPHABET } from "scrambler";
 
 const asciiLetters = [
   "a",
@@ -34,7 +34,6 @@ test("Alphabet handling", () => {
   ALPHABET.forEach((c, i) => expect(c).toBe(asciiLetters[i]));
 
   let shiftedAlphabet = shiftArray(ALPHABET, 1);
-  console.log(shiftedAlphabet);
 
   expect(shiftedAlphabet[0]).toBe("b");
   expect(shiftedAlphabet[shiftedAlphabet.length - 1]).toBe("a");
