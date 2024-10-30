@@ -15,8 +15,8 @@ const WORDS = wordlists.english;
 
 export const MainTable = ({ password }: { password: string }) => {
   return (
-    <div className="overflow-auto">
-      <div className="flex flex-col flex-1 font-mono">
+    <div className="p-2">
+      <div className="flex flex-col flex-1 font-mono overflow-auto h-screen">
         {WORDS.map((word, i) => (
           <div
             className={classNames(

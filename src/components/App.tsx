@@ -98,12 +98,16 @@ function App() {
               >
                 scrambled{" "}
               </a>
-              version—a series of words mixed with random characters that don't
-              resemble a typical seed phrase. Simply input a password, which
-              will be used to encode each word. You can then write down your
-              scrambled seed phrase and store it using the same recommended
-              practices for standard seed phrases, adding an extra layer of
-              security. Just remember to back up your password safely elsewhere.
+              version, that is, a series of strings composed by random
+              characters that don't resemble a typical seed phrase.{" "}
+              <b>You do not need to enter your seed phrase to use this app</b>.
+              Simply input a password, which will be used to encode each word of
+              the BIP39 English set. Then scroll around the UI to find each word
+              of your seed phrase and write down the scrambled version next to
+              it. Finally, store it using the same recommended practices for
+              storing standard seed phrases. Just remember to save your password
+              safely elsewhere. To restore your seed phrase back in plain text,
+              just follow the inverse process.
             </p>
             <p className="mt-4 text-xl text-gray-500">
               To restore your seed phrase back in plain text, just follow the
